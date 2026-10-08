@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kriptosistem PSDKU - Kelompok 1</title>
+    <!-- Font Modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Pustaka Math.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <!-- Memanggil file CSS -->
+    <link rel="stylesheet" href="../web-app/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>🔒 Aplikasi Kriptografi</h2>
+        <p>PSDKU Informatika - Kelompok 1</p>
+    </div>
+
+    <!-- Pilihan Input -->
+    <div class="form-group">
+        <label>Sumber Pesan:</label>
+        <div class="radio-group">
+            <input type="radio" id="inputTypeText" name="inputType" value="text" checked onchange="toggleInputType()">
+            <label for="inputTypeText" class="radio-label">📝 Teks Papan Ketik</label>
+            
+            <input type="radio" id="inputTypeFile" name="inputType" value="file" onchange="toggleInputType()">
+            <label for="inputTypeFile" class="radio-label">📁 Unggah File</label>
+        </div>
+    </div>
+
+    <!-- Area Input Teks -->
+    <div class="form-group" id="textInputArea">
+        <label for="plaintextContent">Pesan Teks (Plainteks / Cipherteks):</label>
+        <textarea id="plaintextContent" placeholder="Ketikkan pesan rahasia Anda di sini..."></textarea>
+    </div>
+
+    <!-- Area Input File -->
+    <div class="form-group hidden" id="fileInputArea">
+        <label for="fileUpload">Pilih File Sembarang:</label>
+        <div class="file-upload-wrapper">
+            <input type="file" id="fileUpload" class="file-input">
+        </div>
+    </div>
+
+    <!-- Pemilihan Algoritma -->
+    <div class="form-group">
+        <label for="cipherAlgorithm">Pilih Algoritma Kriptografi:</label>
+        <select id="cipherAlgorithm" class="modern-select" onchange="toggleOTPKey()">
+            <option value="shift">1. The Shift Cipher</option>
+            <option value="substitution">2. The Substitution Cipher</option>
+            <option value="affine">3. The Affine Cipher</option>
+            <option value="vigenere">4. The Vigenere Cipher</option>
+            <option value="hill">5. The Hill Cipher</option>
+            <option value="permutation">6. The Permutation Cipher</option>
+            <option value="otp">7. One-Time Pad</option>
+        </select>
+    </div>
+
+    <!-- Area Input Kunci Biasa -->
+    <div class="form-group" id="keyInputArea">
+        <label for="cipherKey">Kunci Enkripsi/Dekripsi:</label>
+        <input type="text" id="cipherKey" class="modern-input" placeholder="Masukkan kunci (Panjang bebas)...">
+    </div>
+
+    <!-- Area Input File Kunci Khusus OTP -->
+    <div class="form-group hidden" id="otpKeyArea">
+        <label for="otpFileUpload">Unggah File Kunci OTP (.txt):</label>
+        <input type="file" id="otpFileUpload" class="file-input" accept=".txt">
+        <small class="helper-text">*File harus berisi ribuan huruf acak (sebanyak karakter pesan).</small>
+    </div>
+
+    <!-- Tombol Aksi -->
+    <div class="action-buttons">
+        <button class="btn btn-primary" onclick="processCipher('encrypt')">
+            <span>🛡️</span> Enkripsi
+        </button>
+        <button class="btn btn-danger" onclick="processCipher('decrypt')">
+            <span>🔓</span> Dekripsi
+        </button>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Area Output -->
+    <div class="form-group">
+        <label>Format Tampilan Output Teks:</label>
+        <div class="radio-group small-radio">
+            <input type="radio" id="formatNoSpace" name="outputFormat" value="nospace" checked onchange="formatOutput()">
+            <label for="formatNoSpace" class="radio-label">Tanpa Spasi</label>
+            
+            <input type="radio" id="formatGroup" name="outputFormat" value="group" onchange="formatOutput()">
+            <label for="formatGroup" class="radio-label">Kelompok 5-Huruf</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="outputContent">Hasil (Output):</label>
+        <textarea id="outputContent" readonly placeholder="Hasil proses akan muncul di sini..."></textarea>
+    </div>
+    
+    <button class="btn btn-success full-width" onclick="saveOutputToFile()">
+        <span>💾</span> Simpan Hasil ke File
+    </button>
+</div>
+
+<!-- Memanggil file Javascript -->
+<script src="../web-app/script.js"></script>
+</body>
+</html>
