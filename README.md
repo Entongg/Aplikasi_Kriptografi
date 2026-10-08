@@ -76,4 +76,4 @@ Setiap algoritma memiliki aturan kunci yang berbeda:
 
 ## 👨‍💻 Pengembang
 Dikembangkan sebagai tugas Kriptosistem oleh:
-**Kelompok 1 **
+**Kelompok 1**
